@@ -1,1 +1,5 @@
-# dotfiles
+## Not organised dotfiles
+
+-Hyprland
+-Foot
+-tmux
