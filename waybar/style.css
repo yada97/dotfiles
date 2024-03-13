@@ -1,0 +1,169 @@
+* {
+	/* `otf-font-awesome` is required to be installed for icons */
+	border: none;
+	font-family: Material Design Icons, FontAwesome, Product Sans,
+		JetBrainsMono Nerd Font;
+	font-size: 11.7px;
+	/* border-radius: 20px; */
+}
+
+window {
+}
+window#waybar {
+    
+        background: rgba(0, 0, 0, 0.65);
+       /* background: rgba(8, 8, 8, 0.45); */
+	border-radius: 10px;
+	transition-property: background-color;
+	transition-duration: 0.5s;
+	/* background: transparent; */ 
+}
+/*-----module groups----*/
+.modules-right {
+	/* background-color: rgba(8,8,8,0.85); */
+	background: transparent;
+	margin: 0 -12px 0 0;
+	border-radius: 20px;
+}
+.modules-center {
+	background: transparent;
+	margin: 0 0 0 0;
+	border-radius: 20px;
+}
+.modules-left {
+	background: transparent;
+	margin: 0 0 0 -12px;
+	border-radius: 20px;
+
+}
+
+tooltip {
+	background: #323437;
+	color: #cdd6f4;
+	border-radius: 12px;
+}
+
+#workspaces {
+	padding: 0 14px;
+}
+#workspaces button {
+    padding: 1px 5px;
+    background: transparent;
+    /* color: #4c566a;*/
+    color: #34C900;
+}
+#workspaces button:hover {
+    box-shadow: inherit;
+    text-shadow: inherit;
+    color: #d8dee9;
+}
+
+#workspaces button.active {
+    /* color: #BC83E3; */
+	color: #cdd6f4;
+    transition: all 0.2s cubic-bezier(.55,-0.68,.48,1.682);
+}
+#workspaces button.urgent {
+    color: #11111b;
+    background: #fab387;
+    border-radius: 10px;
+}
+
+#custom-sep {
+	/*color: #313244; */
+	color: #787878;
+	font-size: 18px;
+}
+
+#window {
+	color: #cdd6f4;
+	font-family: JetbrainsMono Nerd Font;
+	font-size: 12px;
+}
+
+#custom-recorder {
+	font-size: 10px;
+	margin: 2px 7px 0px 7px;
+}
+
+#clock {
+	margin: 2px 0 0 0;
+	color: #848484;
+	padding: 2px;
+	border-radius: 10px;
+	font-family: JetbrainsMono Nerd Font;
+}
+
+#battery,
+#custom-dunst {
+	color: #787878;
+}
+#cpu,
+#memory,
+#temperature {
+	color: #878383;
+}
+#mpd {
+	color: #787878;
+	font-size: 11;
+}
+#custom-media {
+	color: #787878;
+	font-size: 11;
+}
+
+#custom-cava {
+    color: #8FBC8F;
+    border-left: 0px;
+    border-right: 0px;
+    padding-bottom: 6px;
+    font-family: "bargraph";
+    font-size: 22px;
+}
+#network {
+	color: #878383;
+}	
+#pulseaudio {
+	color:#878383;
+}
+#tray {
+	color:#878383;
+	border-left: 1px;
+    border-right: 1px;
+    padding-bottom: 1px;
+	border-radius:1px;
+	font-size: 0px;
+}
+#mode,
+#custom-power,
+#custom-menu,
+#idle_inhibitor {
+	padding: 0 5px;
+}
+
+#mode {
+	color: #cc3436;
+	font-weight: bold;
+}
+/*-----Indicators----*/
+#network.disconnected {
+	color: #ff5454;
+}
+#network.disabled {
+	color: #e3c78a;
+}
+#idle_inhibitor.activated {
+	color: #2dcc36;
+}
+#pulseaudio.muted {
+	color: #e3c78a;
+}
+#battery.charging {
+	color: #8cc85f;
+}
+#battery.warning:not(.charging) {
+	color: #e3c78a;
+}
+#battery.critical:not(.charging) {
+	color: #ff5454;
+}
