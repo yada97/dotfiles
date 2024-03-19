@@ -1,8 +1,8 @@
 {
 	"spacing": 0,
-	"layer": "bottom",
-	"position":"top",
-	"mode" : "dock",
+	"layer": "top",
+	"position":"bottom",
+	"mode":"dock",
 	"margin-top": 1,
 	"margin-left": 3,
 	"margin-right": 10,
