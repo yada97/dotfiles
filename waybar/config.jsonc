@@ -1,7 +1,7 @@
 {
 	"spacing": 0,
-	"layer":"top",
-	"position":"top",
+	"position" : "top",
+        "layer" : "bottom",
 	"margin-top": 1,
 	"margin-left": 1,
 	"margin-right": 1,
