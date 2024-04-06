@@ -20,7 +20,7 @@
 		"custom/space",
 		"custom/space",
 		"custom/media",
-		"mpd",
+		
 	] ,
 	"modules-right": [
 		"tray",
