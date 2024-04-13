@@ -17,7 +17,13 @@
  )
 ;(setq backup-directory-alist '(("." . "~/.macsbackup/backup/")))
 ;;(setq auto-save-file-name-transforms '((".*" ,"~/.macsbackup" t)))
+(setq-default shell-file-name "/bin/bash")
+(defun my/start-ansi-term-with-fish ()
+  "Start an ANSI term buffer with the Fish shell."
+  (interactive)
+  (ansi-term "/usr/bin/fish"))
 
+(global-set-key (kbd "C-c t") 'my/start-ansi-term-with-fish)
 
 ;(setq backup-by-copying t)
 (setq backup-by-copying t ; Don't clobber symlinks
@@ -39,6 +45,27 @@
       '("https://www.example.com/feed.xml"
         "https://www.example.com/feed2.xml"))
 (global-set-key (kbd "C-z") nil)
+(global-set-key (kbd "C-!") 'shell-command)
+
+
+;;(defun custom-mode-line ()
+  ;;(set-face-foreground 'mode-line "blue")
+  ;; Set the background color to black
+  ;;(set-face-background 'mode-line "black")
+  ;;(set-face-background 'mode-line-highlight "black")
+  
+  ;; Refresh the mode line to apply the changes
+  ;;(force-mode-line-update))
+
+;; Call the function to apply the customization
+ ;;(custom-mode-line)
+
+
+
+
+
+
+
 
 (require 'obsidian)
 (obsidian-specify-path "~/Documents/Notes-obsid/")
