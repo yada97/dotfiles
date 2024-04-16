@@ -84,7 +84,7 @@
 (global-set-key (kbd "C-c C-t") 'my/start-ansi-term-with-fish)
 (setq! fancy-splash-image nil)
 
-(setq backup-by-copying t ; Don't clobber symlinks
+(setq backup-by-copying t ; Don't clobber symlinksn
 
       backup-directory-alist '(("." . "~/.macsbackup/backup")) ; Don't litter my filesystem tree
 
@@ -129,14 +129,15 @@
 
 ;; Optionally you can also bind a few functions:
 ;; replace "YOUR_BINDING" with the key of your choice:
-;(global-set-key (kbd "YOUR_BINDING") 'obsidian-jump)       ;; Opening a note
-;(global-set-key (kbd "YOUR_BINDING") 'obsidian-capture)    ;; Capturing a new note in the inbox
-;(global-set-key (kbd "YOUR_BINDING") 'obsidian-daily-note) ;; Creating daily note
+(global-set-key (kbd "C-c o j") 'obsidian-jump)       ;; Opening a note
+(global-set-key (kbd "C-c o c") 'obsidian-capture)    ;; Capturing a new note in the inbox
+(global-set-key (kbd "C-c o n") 'obsidian-daily-note) ;; Creating daily note
+;;(evil-mode 0)
 
 ;; Activate detection of Obsidian vault
 (global-obsidian-mode t)
 (defun my-weebery-is-always-greater ()
-  (let* ((banner '("🆈🅰🅳🅰 "))
+  (let* ((banner '("≋y≋a≋d≋a≋"))
          (longest-line (apply #'max (mapcar #'length banner))))
     (put-text-property
      (point)
