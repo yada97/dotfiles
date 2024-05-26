@@ -1,113 +1,13 @@
 {
-	"spacing": 0,
-	"position" : "top",
-        "layer" : "bottom",
-	"margin-top": 1,
-	"margin-left": 1,
-	"margin-right": 1,
-
-	"modules-left": [
-		"hyprland/workspaces",
-		"cpu",
-		"custom/session",
-		"temperature",
+    "position": "top",
+    "layer": "top",
+    "modules-left": ["hyprland/workspaces","cpu","memory","temperature"],
+    "modules-right": ["network","tray","backlight", "pulseaudio","battery","custom/dunst"],
+    "modules-center": ["clock","mpd","custom/media"],
 
 
-	],
-	"modules-center": [
-		"clock",
-		"custom/space",
-		"custom/space",
-		"custom/space",
-		"custom/media",
-		
-	] ,
-	"modules-right": [
-		"tray",
-		"custom/sep",
-		"backlight",
-		"custom/sep",
-		"pulseaudio",
-		"custom/sep",
-		"network",
-		"custom/sep",
-		"battery",
-		"custom/sep",
-		"custom/dunst",
-		"custom/notification",
-		"custom/space",
-		"custom/space",
-		"custom/space",
-		"custom/space",
-		"custom/space"
-	] ,
-	
-	"custom/sep": {
-		"format": " ᚖ "
-	},
-	"custom/space": {
-		"format": " "
-	},
-	"hyprland/window": {
-		"format": "  {}",
-		"max-length": 50,
-		"separate-outputs": true
-	},
-	"idle_inhibitor": {
-		"format": "{icon}",
-		"format-icons": {
-			"activated": "",
-			"deactivated": ""
-		}
-	},
-	"custom/recorder": {
-		"format": "‎⭕‎",
-		"return-type": "json",
-		"interval": 1,
-		"exec": "echo '{\"class\": \"recording\"}'",
-		"exec-if": "pgrep wf-recorder",
-		"tooltip": false,
-		"on-click": "killall -s SIGINT wf-recorder"
-	},
-	"custom/notification": {
-		"tooltip": true,
-		"format": " {icon} ",
-		"format-icons": {
-			"notification": "",
-			"none": "",
-			"dnd-notification": "",
-			"dnd-none": ""
-		},
-		"return-type": "json",
-		"exec-if": "which swaync-client",
-		"exec": "swaync-client -swb",
-		"on-click": "swaync-client -t -sw",
-		"on-click-right": "swaync-client -d -sw",
-		"escape": true
-	},
-	"custom/session": {
-		"format": "{icon}",
-		"format-icons": {
-			"default": "<span color=\"#878383\"> <span color=\"#c6a0f6\">☠</span>矢田<span color=\"#c6a0f6\">☠</span></span> "
-		},
-		"toolip": true,
-		"on-click": "wlogout -p layer-shell"
-	},
-	"backlight": {
-		"format": "<span color=\"#878383\">{icon} {percent}%</span>",
-		"format-icons": [
-			"",
-			"",
-			"",
-			"",
-			"",
-			"",
-			"",
-			""
-		]
-	},
-	"hyprland/workspaces": {
-    "format": "<span color=\"#878383\">{icon}</span>",
+    "hyprland/workspaces": {
+    "format": "<span color=\"#cdff03\">{icon}</span>",
     "tooltip": false,
     "all-outputs": false,
     "current-only": true,
@@ -135,18 +35,71 @@
       "8": "₈",
       "9": "₉",
       "10": "<span color=\"#c6a0f6\">₀⚝</span>",
-      "urgent": "<span color=\"#ee000c\">⟬⟭</span>",
-      "active": "<span color=\"#d1d1d1\">⟬⟭</span>",
+      "urgent": "<span color=\"#ee000c\">⟭</span>",
+      "active": "<span color=\"#03ff4a\">🦅🦅</span>",
       "default": ""
     }
   },
-	"tray": {
+    "tray": {
+        //"icon-size": 20,
+        "spacing": 10
+    },
+    "clock#date": {
+	"timezone": "Europe/London",
+	"format":" {:%d %b}",
+        "interval": 1,
+        "on-click": "zenity --calendar"
+    },
+   "pulseaudio/slider": {
+    "min": 0,
+    "max": 100,
+    "orientation": "horizontal"
+    },
+    "custom/space":{
+    "format": " "
+},
+"custom/album-art": {
+     "exec":"~/.config/waybar/custom/spotify/album_art.sh",
+     "size": 32,
+     "interval": 30,
+},
+"wlr/taskbar": {
+    "format": "{icon}",
+    "icon-size": 14,
+    "icon-theme": "BeutyLine",
+    "tooltip-format": "{title}",
+    "on-click": "activate",
+    "on-click-middle": "close",
+    "ignore-list": [
+       "Alacritty",
+       "xpad",
+       "telegram-desktop"
+    ],
+    "app_ids-mapping": {
+      "firefoxdeveloperedition": "firefox-developer-edition"
+    },
+    "rewrite": {
+        "Firefox Web Browser": "Firefox",
+        "Foot Server": "Terminal"
+    }
+},
+    "pulseaudio": {
+        "scroll-step": 5, // %, can be a float
+        "format": "{icon} {volume}%",
+        "format-muted": " Muted",
+        "format-icons": {
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol",
+        "on-click-middle": "pamixer -t"
+    },
+      	"tray": {
 		"icon-size": 7,
 		"format-icons": 2,
 		"spacing": 5
 	},
 	"clock": {
-		"format": " <span color=\"#a6a6a6\">{:%I:%M%p</span> %x }",
+		"format": "{:%I:%M%p %x }",
 		"interval": 60,
 		"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
 	},
@@ -156,7 +109,7 @@
 	},
 	"cpu": {
 		"format": " {usage}%",
-		"tooltip": false
+		"tooltip": true
 	},
 	"memory": {
 		"format": " {}%"
@@ -252,9 +205,23 @@
         "tooltip-format": "MPD (connected)",
         "tooltip-format-disconnected": "MPD (disconnected)"
     },
-    "custom/cava": {
-    "exec": "sleep 3 && cava -p /home/yada/.config/cava/cava.conf | sed -u 's/;//g;s/0/0/g;s/1/1/g;s/2/2/g;s/3/3/g;s/4/4/g;s/5/5/g;s/6/6/g;s/7/7/g;s/8/8/g;s/9/9/g;'"
+      "custom/cavar": {
+        "format": "{}",
+        "exec": "~/.config/waybar/scripts/cava.sh"
+  },
+  "custom/waves": {
+    "format": "{}",
+    "exec": "python /home/yada/.config/waybar/music_cube/run_musikcube_animation.py [--filler OPTION] [--saver OPTION] [--player OPTION]"
 },
+    "hyprland/window": {
+                       "format": "*",
+                       "icon": 1,
+                       "rewrite": {
+                       "(.*) — Mozilla Firefox": "🌎 $1",
+                       "(.*) - fish": "> [$1]"
+                       },
+                       "separate-outputs": true
+                       },
     "custom/media": {
         "format": "{icon} {}",
         "return-type": "json",
@@ -267,9 +234,7 @@
             "default": " "
         },
         "escape": true,
-        "exec": "python $HOME/.config/waybar/custom_modules/mediaplayer.py 2> /dev/null" // Script in resources folder
+        "exec": "python $HOME/.config/waybar/custom_modules/mediaplayer.py 2> /dev/null"
     }
-
-
-
 }
+2

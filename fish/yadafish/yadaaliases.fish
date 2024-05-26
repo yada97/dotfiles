@@ -1,0 +1,13 @@
+alias yadac 'tmux new -s yada'
+alias yada 'tmux attach -t yada'
+alias work 'tmux rename-window -t yada:0 "roam" && tmux new-window -t yada -n "strike" && tmux new-window -t yada -n "work"'
+#alias gulag 'cd /home/yada/Documents/WorkDir/Gulag'
+#alias workdir 'cd /home/yada/Documents/WorkDir/'
+#alias archstrike_start 'podman start archstrike'
+#alias arch 'docker container start Archstrike && docker container exec -it Archstrike /bin/fish && cd ~'
+#alias archstrike  'docker container start Archstrike'
+#alias archstrike_stop  'podman stop Archstrike'
+
+alias strike 'sudo docker container start archstrike && sudo docker container exec -it archstrike /bin/fish'
+#alias arch_stop 'docker container stop Archstrike'
+#alias archstrike.nn 'docker container start Archstrike'

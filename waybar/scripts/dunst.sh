@@ -1,6 +1,5 @@
-#!/bin/sh
-# Report do-not-disturb status.
-# Based on https://github.com/Alexays/Waybar/wiki/Module:-Custom.
+#!/usr/bin/env sh
+
 
 count=$(dunstctl count waiting)
 enabled=""

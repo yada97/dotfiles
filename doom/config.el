@@ -32,11 +32,15 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-tomorrow-night)
+(setq doom-theme 'doom-ayu-dark)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type t)
+;;(setq display-line-numbers-type t)
+(setq line-numbers-mode nil)
+(setq explicit-shell-file-name "/bin/bash")
+
+
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -74,10 +78,30 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
-(setq-default shell-file-name "/bin/bash")
+
+(defun my-find-file-from-home ()
+  "Opens find-file with initial directory set to ~"
+  (interactive)
+  (let ((default-directory "~/"))
+    (call-interactively #'find-file)))
+(global-set-key (kbd "C-x f") 'my-find-file-from-home)
+
+
+(global-set-key (kbd "C-x t l") 'doom/toggle-line-numbers)
+
+
+(setq display-line-numbers-type nil)
+
+
+
+
+
+
 (define-key global-map (kbd "C-x b") 'switch-to-buffer)
 (define-key global-map (kbd "C-x B") '+vertico/switch-workspace-buffer)
+
 (global-set-key (kbd "C-z") nil)
+
 (defun my/start-ansi-term-with-fish ()
         (interactive)
         (ansi-term "/usr/bin/fish"))
@@ -97,23 +121,22 @@
       version-control t) ; Use versioned backups
 
 (setq auto-save-file-name-transforms `((".*" "~/.macsbackup/" t)))
-(global-set-key (kbd "C-!") 'shell-command)
+(global-set-key (kbd "C-c h") 'shell-command)
 (require 'obsidian)
-(obsidian-specify-path "~/Documents/Notes-obsid/")
+(obsidian-specify-path "~/Documents/OrbNotes/")
+;;(obsidian-specify-path "~//home/yada/Documents/WorkDir/Gulag/viator.bc/viator.o/")
 ;; If you want a different directory of `obsidian-capture':
 ;;(setq obsidian-inbox-directory "~/Documents/Notes-obsid")
 ;; Clicking on a wiki link referring a non-existing file the file can be
 ;; created in the inbox (t) or next to the file with the link (nil).
-;; Default: t - creating in the inbox
+;; Default: t - cr-eating in the inbox
 ;(setq obsidian-wiki-link-create-file-in-inbox nil)
 ;; You may want to define a folder for daily notes. By default it is the inbox.
 (setq obsidian-daily-notes-directory "DailyNotes")
 ;; Directory of note templates, unset (nil) by default
 ;(setq obsidian-templates-directory "Templates")
-;; Daily Note template name - requires a template directory. Default: Daily Note Template.md
 ;(setq obsidian-daily-note-template "Daily Note Template.md")
-
-
+;; Daily Note template name - requires a template directory. Default: Daily Note Template.md
 ;; Define obsidian-mode bindings
 ;(add-hook
  ;'obsidian-mode-hook
@@ -127,11 +150,15 @@
    ;; Following backlinks
    ;;(local-set-key (kbd "C-c C-b") 'obsidian-backlink-jump)))
 
+(global-set-key (kbd "C-c d") 'next-buffer)
+(global-set-key (kbd "C-c C-d") 'previous-buffer)
 ;; Optionally you can also bind a few functions:
 ;; replace "YOUR_BINDING" with the key of your choice:
 (global-set-key (kbd "C-c o j") 'obsidian-jump)       ;; Opening a note
 (global-set-key (kbd "C-c o c") 'obsidian-capture)    ;; Capturing a new note in the inbox
 (global-set-key (kbd "C-c o n") 'obsidian-daily-note) ;; Creating daily note
+(global-set-key (kbd "C-c b") 'obsidian-specify-path)
+(global-set-key (kbd "C-x C-b") 'switch-to-buffer)
 ;;(evil-mode 0)
 
 ;; Activate detection of Obsidian vault
@@ -149,3 +176,62 @@
      'face 'doom-dashboard-banner)))
 
 (setq +doom-dashboard-ascii-banner-fn #'my-weebery-is-always-greater)
+(defun list-markdown-files ()
+  (interactive)
+  (require 'vertico)
+  (vertico-mode 1) ; Activate Vertico mode
+  (let* ((directories '("/usr/share/PayloadsAllTheThings/"
+                         "/home/yada/Documents/WorkDir/Reads/wstg/document/4-Web_Application_Security_Testing/"
+                         "/home/yada/Documents/WorkDir/Reads/CheatSheetSeries/cheatsheets/"))
+         (files (mapcan (lambda (dir)
+                          (directory-files-recursively dir "\\.md$"))
+                        directories))
+         (formatted-files (mapcar (lambda (file)
+                                    (let* ((dir-name (file-name-directory file))
+                                           (base-name (file-name-nondirectory file))
+                                           (source (cond ((string-match-p "/PayloadsAllTheThings/" dir-name) "PayloadAllTheThings   ]->")
+                                                        ((string-match-p "/wstg/document/4-Web_Application_Security_Testing/" dir-name) "WebSecurity           ]->")
+                                                        ((string-match-p "/CheatSheetSeries/cheatsheets/" dir-name) "Cheatsheet            ]->")
+                                                         (t ""))))
+
+                                      (cons (format "%-30s%-30s" source base-name) file)))
+                                  files))
+         (file-info (completing-read "Markdown files: " formatted-files nil t))
+         (selected-file (cdr (assoc file-info formatted-files))))
+    (find-file selected-file) ; Open the selected file
+    (markdown-view-mode)))
+
+(global-set-key (kbd "C-c m") 'list-markdown-files)
+
+(defun pentest-notes ()
+  (interactive)
+  (require 'vertico)
+  (vertico-mode 1)
+  (let* ((directories '("/home/yada/Documents/WorkDir/Gulag/viator.bc/viator.o"
+                        "/home/yada/Documents/WorkDir/Gulag/Templates/pen-notes/pen-notes"
+                        "/home/yada/Documents/WorkDir/Gulag/grind.h1/grind.o"
+                        "/home/yada/Documents/WorkDir/Gulag/coda.h1/coda.o"
+                       ))
+         (files (mapcan (lambda (dir)
+                          (directory-files-recursively dir "\\.md$"))
+                        directories))
+         (formatted-files (mapcar (lambda (file)
+                                    (let* ((dir-name (file-name-directory file))
+                                           (base-name (file-name-nondirectory file))
+                                           (source (cond ((string-match-p "/viator.bc/viator.o" dir-name)  "A.2 viator       ]->")
+                                                         ((string-match-p "/pen-notes/pen-notes" dir-name) "~ temp           ]->")
+                                                         ((string-match-p "/grind.h1/grind.o" dir-name)    "A.1 grindr       ]->")
+                                                         ((string-match-p "/coda.h1/coda.o" dir-name)      "A.3 coda         ]->")
+                                                         (t ""))))
+                                      (cons (format "%-30s%-30s" source base-name) file)))
+                                  files))
+         (file-info (completing-read "Markdown files: " formatted-files nil t))
+         (selected-file (cdr (assoc file-info formatted-files))))
+    (find-file selected-file) ; Open the selected file
+    (markdown-view-mode)))
+
+(global-set-key (kbd "C-c u") 'pentest-notes)
+(global-set-key (kbd "C-c C-b") 'kill-some-buffers)
+
+(global-set-key (kbd "C-c C-a") 'centaur-tabs-mode)
+;;(global-set-key (kbd "C-c C-a") 'centaur-tabs--create-new-tab)
