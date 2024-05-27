@@ -39,6 +39,14 @@ function space --argument path
             cd /home/yada/Documents/Workdir/Space/"$path"
         end
 end
+
+function projects --argument path
+         if [ "$path" = "" ];
+            cd /home/yada/Documents/Projects/
+         else
+            cd /home/yada/Documents/Projects/"$path"
+        end
+end
 function source_fishrc
          source /home/yada/.config/fish/config.fish
 end
