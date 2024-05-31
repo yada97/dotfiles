@@ -13,6 +13,9 @@ function floorp --argument browser
           end
 end
 
+function proton --argument path path2
+         protonvpn-cli $path $path2
+end
 function workdir --argument path
          if [ "$path" = "" ];
             cd /home/yada/Documents/WorkDir/

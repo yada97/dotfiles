@@ -32,7 +32,19 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
+;; Example `config.el` content
+
+;; Set theme
 (setq doom-theme 'doom-ayu-dark)
+
+;; Problematic line might be here
+;; (setq my-var files) ; 'files' might be undefined
+
+;; Ensure variables are defined correctly
+(setq my-var 'some-value) ; Ensure 'some-value' is defined
+
+;; Load theme
+(load-theme doom-theme t)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
