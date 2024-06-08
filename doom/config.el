@@ -35,13 +35,12 @@
 ;; Example `config.el` content
 
 ;; Set theme
-(setq doom-theme 'doom-ayu-dark)
+(setq doom-theme 'doom-challenger-deep)
 
 ;; Problematic line might be here
 ;; (setq my-var files) ; 'files' might be undefined
 
 ;; Ensure variables are defined correctly
-(setq my-var 'some-value) ; Ensure 'some-value' is defined
 
 ;; Load theme
 (load-theme doom-theme t)
@@ -175,7 +174,7 @@
 
 ;; Activate detection of Obsidian vault
 (global-obsidian-mode t)
-(defun my-weebery-is-always-greater ()
+(defun my-weebery-is-always-grater ()
   (let* ((banner '("≋y≋a≋d≋a≋"))
          (longest-line (apply #'max (mapcar #'length banner))))
     (put-text-property
@@ -222,6 +221,7 @@
   (let* ((directories '("/home/yada/Documents/WorkDir/Gulag/viator.bc/viator.o"
                         "/home/yada/Documents/WorkDir/Gulag/Templates/pen-notes/pen-notes"
                         "/home/yada/Documents/WorkDir/Gulag/grind.h1/grind.o"
+                        "/home/yada/Documents/WorkDir/Gulag/circlebbp.h1/circlebbp.o"
                         "/home/yada/Documents/WorkDir/Gulag/coda.h1/coda.o"
                        ))
          (files (mapcan (lambda (dir)
@@ -230,10 +230,11 @@
          (formatted-files (mapcar (lambda (file)
                                     (let* ((dir-name (file-name-directory file))
                                            (base-name (file-name-nondirectory file))
-                                           (source (cond ((string-match-p "/viator.bc/viator.o" dir-name)  "A.2 viator       ]->")
-                                                         ((string-match-p "/pen-notes/pen-notes" dir-name) "~ temp           ]->")
-                                                         ((string-match-p "/grind.h1/grind.o" dir-name)    "A.1 grindr       ]->")
-                                                         ((string-match-p "/coda.h1/coda.o" dir-name)      "A.3 coda         ]->")
+                                           (source (cond ((string-match-p "/viator.bc/viator.o" dir-name)             "A.2 viator       ]->")
+                                                         ((string-match-p "/pen-notes/pen-notes" dir-name)            "~ *              ]->")
+                                                         ((string-match-p "/grind.h1/grind.o" dir-name)               "A.1 grindr       ]->")
+                                                         ((string-match-p "/coda.h1/coda.o" dir-name)                 "A.3 coda         ]->")
+                                                         ((string-match-p "/circlebbp.h1/circlebbp.o" dir-name)       "A.4 CircleBBP    ]->")
                                                          (t ""))))
                                       (cons (format "%-30s%-30s" source base-name) file)))
                                   files))

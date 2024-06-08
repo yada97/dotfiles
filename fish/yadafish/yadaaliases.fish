@@ -1,6 +1,6 @@
 alias yadac 'tmux new -s yada'
 alias yada 'tmux attach -t yada'
-alias work 'tmux rename-window -t yada:0 "roam" && tmux new-window -t yada -n "strike" && tmux new-window -t yada -n "work"'
+alias work 'tmux rename-window -t yada:0 "roam" && tmux new-window -t yada:6 -n "discord" && tmux new-window -t yada -n "strike" && tmux new-window -t yada -n "work"'
 #alias gulag 'cd /home/yada/Documents/WorkDir/Gulag'
 #alias workdir 'cd /home/yada/Documents/WorkDir/'
 #alias archstrike_start 'podman start archstrike'
@@ -11,4 +11,3 @@ alias work 'tmux rename-window -t yada:0 "roam" && tmux new-window -t yada -n "s
 alias strike 'sudo docker container start archstrike && sudo docker container exec -it archstrike /bin/fish'
 #alias arch_stop 'docker container stop Archstrike'
 #alias archstrike.nn 'docker container start Archstrike'
-alias activate 'source /home/yada/.config/.sysvenv/bin/activate.fish'
