@@ -7,7 +7,7 @@
 
 
     "hyprland/workspaces": {
-    "format": "<span color=\"#7a7a7a\">{icon}</span>",
+    "format": "<span color=\"#ababab\">{icon}</span>",
     "tooltip": false,
     "all-outputs": false,
     "current-only": true,

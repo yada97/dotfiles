@@ -14,7 +14,8 @@ background-color: rgba(0,0,0,0);
 window#waybar {
   background-color: rgba(0, 0, 0,0);
   /*color: #cdff03;*/
-  color: #7a7a7a;
+  /*color: #7a7a7a;*/
+  color: #ababab;
 }
 #workspaces button {
     border-radius: 0px;
