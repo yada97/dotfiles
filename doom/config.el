@@ -223,6 +223,7 @@
                         "/home/yada/Documents/WorkDir/Gulag/grind.h1/grind.o"
                         "/home/yada/Documents/WorkDir/Gulag/circlebbp.h1/circlebbp.o"
                         "/home/yada/Documents/WorkDir/Gulag/coda.h1/coda.o"
+                        "/home/yada/Documents/WorkDir/Gulag/earlywarning.h1/earlyw.o"
                        ))
          (files (mapcan (lambda (dir)
                           (directory-files-recursively dir "\\.md$"))
@@ -235,6 +236,7 @@
                                                          ((string-match-p "/grind.h1/grind.o" dir-name)               "A.1 grindr       ]->")
                                                          ((string-match-p "/coda.h1/coda.o" dir-name)                 "A.3 coda         ]->")
                                                          ((string-match-p "/circlebbp.h1/circlebbp.o" dir-name)       "A.4 CircleBBP    ]->")
+                                                         ((string-match-p "/earlywarning.h1/earlyw.o" dir-name)       "A.5 earlywarn    ]->")
                                                          (t ""))))
                                       (cons (format "%-30s%-30s" source base-name) file)))
                                   files))
