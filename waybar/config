@@ -7,7 +7,7 @@
 
 
     "hyprland/workspaces": {
-    "format": "<span color=\"#ababab\">{icon}</span>",
+    "format": "{icon}",
     "tooltip": false,
     "all-outputs": false,
     "current-only": true,
@@ -30,9 +30,9 @@
       "7": "₇",
       "8": "₈",
       "9": "₉",
-      "10": "<span color=\"#c6a0f6\">₀⚝</span>",
-      "urgent": "<span color=\"#ee000c\">⟭</span>",
-      "active": "<span color=\"#03ff4a\"></span>",
+      "10": "₀⚝",
+      "urgent": "⟭",
+      "active": "",
       "default": ""
     }
   },
@@ -233,4 +233,3 @@
         "exec": "python $HOME/.config/waybar/custom_modules/mediaplayer.py 2> /dev/null"
     }
 }
-2

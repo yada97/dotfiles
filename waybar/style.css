@@ -2,13 +2,15 @@
 
 * {
     border: 0px;
+    /*border-radius: 7px;*/
     font-family: Material Design Icons, FontAwesome, Product Sans, JetBrainsMono Nerd Font;
     font-size: 11px;
-    min-height: 20px;
+    min-height: 10px;
+    /*max-height: 20px;*/
 }
 
 window > box {
-margin: 0px 5px 0px 5px;
+margin: 0px 1px 0px 1px;
 background-color: rgba(0,0,0,0);
 }
 window#waybar {
@@ -17,36 +19,8 @@ window#waybar {
   /*color: #7a7a7a;*/
   color: #ababab;
 }
-#workspaces button {
-    border-radius: 0px;
-    color: @color7;
-}
-#workspaces {
-    color: @color7;
-    border: 0px;
-    box-shadow: inherit;
-}
 
-#workspaces button {
-    background-color: transparent;
-    color: @color8;
-}
-#workspaces button:hover {
-    color: @color4;
-    background-color: transparent;
-}
-#workspaces button.visible {
-    color: @color7;
-}
-#workspaces button.focused {
-    color: @color8;
-}
-#workspaces button.active {
-    color: @color7;
-}
-#workspaces button.urgent {
-    color: @color1;
-}
+
 .modules-center {
 }
 .modules-left {
@@ -103,8 +77,11 @@ background-color: rgba(0, 0, 0, 0.7);
         color: #220296;
     }
 }
+
+
 label:focus {
 }
+
 #custom-dot {
   padding-top: 0px;
   color: @color4;
@@ -128,4 +105,62 @@ label:focus {
 #window {
 }
 #clock {
+}
+#workspaces {
+    padding: 1px;
+    padding-right: 10px;
+    margin-left: 1px;
+    margin-right: 1px;
+    background: rgba(0, 0, 0, 0.7);
+    color: #ababab;
+    }
+
+#workspaces button {
+    padding: 0 2px;
+    margin-left: 10px;
+    background: transparent;
+    color: #889fa7;
+    border-bottom: 1px solid;
+}
+
+#workspaces button.active {
+    background: transparent;
+    color: #dfdfdf;
+    border-bottom: 2px solid #51afef;
+}
+
+#workspaces button.focused {
+    background: transparent;
+    color: #dfdfdf;
+    border-bottom: 2px solid #51afef;
+}
+
+#workspaces button.visible {
+    background: transparent;
+    color: #03ff4a;
+    border-bottom-color: #03ff4a;
+    border-left-color: #03ff4a;
+    border-bottom: 1px solid;
+    }
+
+#workspaces button.urgent {
+    background: red;
+    color: #889fa7;
+    border-bottom: 2px solid transparent;
+}
+
+#workspaces button.hidden {
+    background: green;
+    color: #889fa7;
+    border-bottom: 2px solid transparent;
+}
+#workspace {
+  /*color: #ababab;*/
+  color:#ababab;
+  }
+#workspace.active{
+  color: #03ff4a;
+}
+#workspace.urgent{
+  color: #ee000c;
 }
