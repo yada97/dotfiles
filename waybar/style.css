@@ -119,7 +119,7 @@ label:focus {
     padding: 0 2px;
     margin-left: 10px;
     background: transparent;
-    color: #889fa7;
+    color: #ababab;
     border-bottom: 1px solid;
 }
 
@@ -153,14 +153,4 @@ label:focus {
     background: green;
     color: #889fa7;
     border-bottom: 2px solid transparent;
-}
-#workspace {
-  /*color: #ababab;*/
-  color:#ababab;
-  }
-#workspace.active{
-  color: #03ff4a;
-}
-#workspace.urgent{
-  color: #ee000c;
 }
