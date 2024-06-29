@@ -175,6 +175,7 @@
         	"restart-interval": 1,
         	"on-click": "dunstctl set-paused toggle",
 	},
+
 	"mpd": {
         "format": "<span color=\"#4287f5\">{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}<span color=\"#4287f6\">{artist}</span> - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}%  </span>",
         "format-disconnected": "Disconnected ",
@@ -226,8 +227,8 @@
         "on-click-right" : "playerctl -p spotify play-pause",
 	"on-click-middle" : "playerctl -p spotify previous",
         "format-icons": {
-            "spotify": " ",
-            "default": " "
+            "spotify": "<span color=\"#11fc00\"> </span>",
+            "default": "<span color=\"#0004fc\"></span>"
         },
         "escape": true,
         "exec": "python $HOME/.config/waybar/custom_modules/mediaplayer.py 2> /dev/null"
