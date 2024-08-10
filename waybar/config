@@ -8,7 +8,7 @@
 
     "hyprland/workspaces": {
     "format": "{icon}",
-    "tooltip": false,
+    "tooltip": true,
     "all-outputs": false,
     "current-only": true,
     "sort-by-number": true,
