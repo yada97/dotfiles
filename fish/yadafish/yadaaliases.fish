@@ -9,7 +9,7 @@ alias work 'tmux rename-window -t yada:0 "roam" && tmux new-window -t yada -n "s
 #alias archstrike  'docker container start Archstrike'
 #alias archstrike_stop  'podman stop Archstrike'
 
-alias strike 'sudo docker container start archstrike && sudo docker container exec -it archstrike /bin/fish'
+alias strike 'docker container start archstrike && docker container exec -it archstrike /bin/fish'
 #alias arch_stop 'docker container stop Archstrike'
 #alias archstrike.nn 'docker container start Archstrike'
 alias prac 'docker run --rm -it -p 5050:80 docker.io/sagikazarmark/dvwa'
