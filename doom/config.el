@@ -51,6 +51,10 @@
 (obsidian-specify-path "~/Documents/OrbNotes/")
 
 (setq obsidian-daily-notes-directory "DailyNotes")
+(defun my-obsidian-specify-path ()
+  "Set the Obsidian path to '~/Documents/OrbNotes/'."
+  (interactive)
+  (obsidian-specify-path "~/Documents/OrbNotes/"))
 
 (global-obsidian-mode t)
 (defun my-weebery-is-always-grater ()
@@ -92,49 +96,137 @@
     (markdown-view-mode)))
 
 (defun pentest-notes ()
+
   (interactive)
+
   (require 'vertico)
+
   (vertico-mode 1)
+
+
+
   ;; Function to read lines from a file and return them as a list
+
   (defun read-lines-from-file (file-path)
+
     "Read lines from FILE-PATH and return them as a list."
+
     (with-temp-buffer
+
       (insert-file-contents file-path)
+
       (split-string (buffer-string) "\n" t)))
 
+
   ;; Load directories from the directories.txt file
+
   (let* ((directories (read-lines-from-file "/home/yada/Documents/WorkDir/Gulag/programs.txt")))
 
+
     ;; Load source mappings from sources.txt
+
     (defvar source-mapping '())
+
     (let ((source-lines (read-lines-from-file "/home/yada/Documents/WorkDir/Gulag/mappings.txt")))
+
       (dolist (line source-lines)
+
         (let ((split (split-string line "->")))
+
           (add-to-list 'source-mapping (cons (string-trim (car split)) (string-trim (cadr split)))))))
 
+
     ;; Function to find the appropriate source label
+
     (defun find-source-label (dir-name)
+
       "Find the appropriate source label for DIR-NAME using the source-mapping."
+
       (catch 'found
+
         (dolist (pair source-mapping)
+
           (when (string-match-p (car pair) dir-name)
+
             (throw 'found (cdr pair))))
+
         ""))
 
-    ;; Retrieve the list of markdown files and format them
+
+    ;; Function to extract the version number from the filename
+
+    (defun extract-version (file)
+
+      "Extract version number from the filename."
+
+      (let* ((base-name (file-name-nondirectory file))
+
+             (version (car (split-string base-name "[^0-9\\.]+"))))
+
+        (mapcar #'string-to-number (split-string version "\\."))))
+
+
+    ;; Custom sort function to compare version numbers
+
+    (defun compare-versions (a b)
+
+      "Compare two version strings A and B."
+
+      (let ((a-version (extract-version a))
+
+            (b-version (extract-version b)))
+
+        (cl-loop for a-part in a-version
+
+                 for b-part in b-version
+
+                 while (and a-part b-part (= a-part b-part))
+
+                 do (setq a-version (cdr a-version)
+
+                          b-version (cdr b-version)))
+
+        (if (or a-version b-version)
+
+            (< (or (car a-version) 0) (or (car b-version) 0))
+
+          (< (length a-version) (length b-version)))))
+
+
+    ;; Retrieve the list of markdown files, sort and format them
+
     (let* ((files (mapcan (lambda (dir)
+
                             (directory-files-recursively dir "\\.md$"))
+
                           directories))
+
+           (sorted-files (sort files #'compare-versions))
+
            (formatted-files (mapcar (lambda (file)
+
                                       (let* ((dir-name (file-name-directory file))
+
                                              (base-name (file-name-nondirectory file))
+
                                              (source (find-source-label dir-name)))
+
                                         (cons (format "%-30s%-30s" source base-name) file)))
-                                    files))
+
+                                    sorted-files))
+
            (file-info (completing-read "Markdown files: " formatted-files nil t))
+
            (selected-file (cdr (assoc file-info formatted-files))))
+
       (find-file selected-file) ; Open the selected file
+
       (markdown-view-mode))))
+
+
+
+
+
 
 
 
@@ -152,3 +244,4 @@
 (global-set-key (kbd "C-x C-b") 'switch-to-buffer)
 (global-set-key (kbd "C-x f") 'my-find-file-from-home)
 (global-set-key (kbd "C-x t l") 'doom/toggle-line-numbers)
+(global-set-key (kbd "C-c r") 'my-obsidian-specify-path)
