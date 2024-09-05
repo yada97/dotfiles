@@ -57,14 +57,16 @@
 },
 "wlr/taskbar": {
     "format": "{icon}",
-    "icon-size": 14,
+    "icon-size": 9,
     "icon-theme": "BeutyLine",
     "tooltip-format": "{title}",
     "on-click": "activate",
     "on-click-middle": "close",
     "ignore-list": [
        "Alacritty",
+       "foot",
        "xpad",
+       "java",
        "telegram-desktop"
     ],
     "app_ids-mapping": {
