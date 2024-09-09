@@ -1,5 +1,5 @@
 #ibus-daemon -d -x
-export EDITOR=xed
+export EDITOR=emacsclient -nw
 export BROWSER=floorp
 export TERM=foot
 export MAIL=thunderbird
