@@ -36,12 +36,16 @@
         //"icon-size": 20,
         "spacing": 10
     },
-    "clock#date": {
-	"timezone": "Europe/London",
-	"format":" {:%d %b}",
+       "custom/clog": {
+        "tooltip-format": "<big>{:%A, %d.%B %Y }</big>\n<tt><small>{calendar}</small></tt>",
+        //"format": " {:%a %d %b  %I:%M %p}",	//12 hour format
+        //"format": " {:%a %d %b  %H:%M}",	//24 hour format
+        "format-alt": " {:%d/%m/%Y  %H:%M:%S}",
+        //"max-length": 200
         "interval": 1,
-        "on-click": "zenity --calendar"
+        "on-click": "~/.config/waybar/scripts/OCV",
     },
+
    "pulseaudio/slider": {
     "min": 0,
     "max": 100,

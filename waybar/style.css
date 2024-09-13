@@ -39,6 +39,7 @@ window#waybar {
 #pulseaudio,
 #disk,
 #custom-cavar,
+#custom-clog,
 #hyprland-window,
 #custom-album-art,
 #wlr-taskbar,
@@ -94,6 +95,9 @@ label:focus {
 #custom-spotify {
 
 }
+#clog{
+  
+}
 #memory {
 
 }
@@ -114,6 +118,7 @@ label:focus {
 #clock {
 
 }
+
 #workspaces {
     padding: 1px;
     padding-right: 10px;

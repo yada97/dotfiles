@@ -14,7 +14,7 @@
 (setq line-numbers-mode nil)
 (setq explicit-shell-file-name "/bin/bash")
 (setq org-directory "~/org/")
-
+(require 'rust-mode)
 (defun my-find-file-from-home ()
   "Opens find-file with initial directory set to ~"
   (interactive)
@@ -116,25 +116,12 @@
           (when (string-match-p (car pair) dir-name)
             (throw 'found (cdr pair))))
         ""))
-    (defun extract-version (file)
-      (let* ((base-name (file-name-nondirectory file))
-             (version (car (split-string base-name "[^0-9\\.]+"))))
-        (mapcar #'string-to-number (split-string version "\\."))))
-    (defun compare-versions (a b)
-      (let ((a-version (extract-version a))
-            (b-version (extract-version b)))
-        (cl-loop for a-part in a-version
-                 for b-part in b-version
-                 while (and a-part b-part (= a-part b-part))
-                 do (setq a-version (cdr a-version)
-                          b-version (cdr b-version)))
-        (if (or a-version b-version)
-            (< (or (car a-version) 0) (or (car b-version) 0))
-          (< (length a-version) (length b-version)))))
     (let* ((files (mapcan (lambda (dir)
                             (directory-files-recursively dir "\\.md$"))
                           directories))
-           (sorted-files (sort files #'compare-versions))
+           ;; Sort files by directory name
+           (sorted-files (sort files (lambda (a b)
+                                       (string< (file-name-directory a) (file-name-directory b)))))
            (formatted-files (mapcar (lambda (file)
                                       (let* ((dir-name (file-name-directory file))
                                              (base-name (file-name-nondirectory file))
@@ -145,11 +132,6 @@
            (selected-file (cdr (assoc file-info formatted-files))))
       (find-file selected-file) ; Open the selected file
       (markdown-view-mode))))
-
-
-
-
-
 
 
 
@@ -168,3 +150,10 @@
 (global-set-key (kbd "C-x f") 'my-find-file-from-home)
 (global-set-key (kbd "C-x t l") 'doom/toggle-line-numbers)
 (global-set-key (kbd "C-c r") 'my-obsidian-specify-path)
+;;;; Mouse scrolling in terminal emacs
+(unless (display-graphic-p)
+  ;; activate mouse-based scrolling
+  (xterm-mouse-mode 1)
+  (global-set-key (kbd "<mouse-4>") 'scroll-down-line)
+  (global-set-key (kbd "<mouse-5>") 'scroll-up-line)
+  )
