@@ -7,8 +7,8 @@
 
 
 ;; Set theme
-;;(setq doom-theme 'doom-challenger-deep)
-(setq doom-theme 'doom-acario-dark)
+(setq doom-theme 'doom-challenger-deep)
+;;(setq doom-theme 'doom-acario-dark)
 ;; Load theme
 (load-theme doom-theme t)
 (setq line-numbers-mode nil)

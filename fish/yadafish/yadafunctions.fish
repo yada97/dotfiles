@@ -1,17 +1,27 @@
 function en --argument file
          emacsclient -nw $file
 end
-
+function store --argument path
+         /run/media/yada/takashi/$path
+end
+function key
+         set -x FZF_DEFAULT_OPTS ''
+         eval $(keychain --eval --agents ssh --quiet --nogui $(fzf --walker-root=/home/yada/.ssh))
+         fishrc
+end
+function fishrc
+         source ~/.config/fish/config.fish
+end
 function ens --argument file
          sudo emacsclient -nw $file
 end
-function floorp --argument browser
-         if [ "$browser" = "" ];
-            /usr/bin/flatpak run --branch=stable --arch=x86_64 --command=floorp --file-forwarding one.ablaze.floorp
-          else
-            /usr/bin/flatpak run --branch=stable --arch=x86_64 --command=floorp --file-forwarding one.ablaze.floorp $browser
-          end
-end
+#function floorp --argument browser
+#         if [ "$browser" = "" ];
+#            /usr/bin/flatpak run --branch=stable --arch=x86_64 --command=floorp --file-forwarding one.ablaze.floorp
+#          else
+#            /usr/bin/flatpak run --branch=stable --arch=x86_64 --command=floorp --file-forwarding one.ablaze.floorp $browser
+#          end
+#end
 
 function proton --argument path path2
          protonvpn-cli $path $path2
@@ -30,9 +40,6 @@ function gulag --argument path
         else
             cd /home/yada/Documents/WorkDir/Gulag/"$path"
         end
-end
-function source_fishrc
-         source /home/yada/.config/fish/config.fish
 end
 
 function space --argument path
