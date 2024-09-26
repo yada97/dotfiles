@@ -3,7 +3,7 @@
     "layer": "top",
     "modules-left": ["hyprland/workspaces","cpu","memory","temperature"],
     "modules-right": ["network","tray","backlight", "pulseaudio","battery"],
-    "modules-center": ["clock","mpd","custom/media"],
+    "modules-center": ["clock","custom/media","wlr/taskbar"],
 
 
     "hyprland/workspaces": {
@@ -32,20 +32,17 @@
       "default": ""
     }
   },
-    "tray": {
+
+"tray": {
         //"icon-size": 20,
         "spacing": 10
     },
-       "custom/clog": {
-        "tooltip-format": "<big>{:%A, %d.%B %Y }</big>\n<tt><small>{calendar}</small></tt>",
-        //"format": " {:%a %d %b  %I:%M %p}",	//12 hour format
-        //"format": " {:%a %d %b  %H:%M}",	//24 hour format
-        //"format-alt": " {:%d/%m/%Y  %H:%M:%S}",
-        //"max-length": 200
+    "clock#date": {
+	"timezone": "Europe/London",
+	"format":" {:%d %b}",
         "interval": 1,
-        "on-click": "~/.config/waybar/scripts/OCV",
+        "on-click": "zenity --calendar"
     },
-
    "pulseaudio/slider": {
     "min": 0,
     "max": 100,
@@ -61,16 +58,14 @@
 },
 "wlr/taskbar": {
     "format": "{icon}",
-    "icon-size": 9,
+    "icon-size": 14,
     "icon-theme": "BeutyLine",
     "tooltip-format": "{title}",
     "on-click": "activate",
     "on-click-middle": "close",
     "ignore-list": [
        "Alacritty",
-       "foot",
        "xpad",
-       "java",
        "telegram-desktop"
     ],
     "app_ids-mapping": {
@@ -177,12 +172,6 @@
         	"restart-interval": 1,
         	"on-click": "dunstctl set-paused toggle",
 	},
-         "custom/traffic": {
-             "exec": "~/.config/waybar/scripts/network_traffic.sh",
-             "return-type": "json",
-             "format-ethernet": "{icon} {ifname} ⇣{bandwidthDownBytes} ⇡{bandwidthUpBytes}",    // optional
-},
-
 	"mpd": {
         "format": "<span color=\"#4287f5\">{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}<span color=\"#4287f6\">{artist}</span> - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}%  </span>",
         "format-disconnected": "Disconnected ",
@@ -227,15 +216,15 @@
                        "separate-outputs": true
                        },
     "custom/media": {
-        "format": "{icon} {}",
+        "format": "{icon} {0}",
         "return-type": "json",
         "max-length": 40,
         "on-click" : "playerctl -p spotify next",
         "on-click-right" : "playerctl -p spotify play-pause",
 	"on-click-middle" : "playerctl -p spotify previous",
         "format-icons": {
-            "spotify": "<span color=\"#11fc00\"> </span>",
-            "default": "<span color=\"#0004fc\"></span>"
+            "spotify": " ",
+            "default": " "
         },
         "escape": true,
         "exec": "python $HOME/.config/waybar/custom_modules/mediaplayer.py 2> /dev/null"
