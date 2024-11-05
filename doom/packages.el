@@ -34,7 +34,7 @@
 ;; Add the org-journal package
 
 (package! obsidian)
-
+(package! codeium :recipe (:host github :repo "Exafunction/codeium.el"))
 
 ;; Specify a `:branch' to install a package from a particular branch or tag.
 ;; This is required for some packages whose default branch isn't 'master' (which

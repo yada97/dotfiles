@@ -1,7 +1,7 @@
 alias yadac 'tmux new -s yada'
 alias yada 'tmux attach -t yada'
 #alias work 'tmux rename-window -t yada:0 "roam" && tmux new-window -t yada:6 -n "discord" && tmux new-window -t yada -n "strike" && tmux new-window -t yada -n "work"'
-alias work 'tmux rename-window -t yada:0 "roam" && tmux new-window -t yada -n "strike" && tmux new-window -t yada -n "work"'
+alias work 'tmux rename-window -t yada:0 "roam" && tmux new-window -t yada -n "strike"'
 #alias gulag 'cd /home/yada/Documents/WorkDir/Gulag'
 #alias workdir 'cd /home/yada/Documents/WorkDir/'
 #alias archstrike_start 'podman start archstrike'
@@ -13,3 +13,4 @@ alias strike 'docker container start archstrike && docker container exec -it arc
 #alias arch_stop 'docker container stop Archstrike'
 #alias archstrike.nn 'docker container start Archstrike'
 alias prac 'docker run --rm -it -p 5050:80 docker.io/sagikazarmark/dvwa'
+alias create 'docker run -it -v /home/yada/Documents/WorkDir/Door/:/root/door -v /usr/share/seclists/:/usr/share/seclists -v /home/yada/.ZAP/fuzzers:/usr/share/seclists/fuzzers -v /home/yada/.ZAP/dirbuster:/usr/share/seclists/dirbuster --name archstrike --workdir /root -p 7080:80 -p 8008:8008 --hostname yadastrike yadastrike'

@@ -162,8 +162,8 @@ alias mirrord 'sudo reflector --latest 50 --number 20 --sort delay --save /etc/p
 alias mirrors 'sudo reflector --latest 50 --number 20 --sort score --save /etc/pacman.d/mirrorlist'
 
 # Help people new to Arch
-alias apt 'man pacman'
-alias apt-get 'man pacman'
+# alias apt 'man pacman'
+# alias apt-get 'man pacman'
 alias please 'sudo'
 alias tb 'nc termbin.com 9999'
 alias helpme 'echo "To print basic information about a command use tldr <command>"'
