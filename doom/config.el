@@ -7,7 +7,7 @@
 
 
 ;; Set theme
-(setq doom-theme 'doom-challenger-deep)
+(setq doom-theme 'doom-homage-black )
 ;;(setq doom-theme 'doom-acario-dark)
 ;; Load theme
 (load-theme doom-theme t)
@@ -77,7 +77,8 @@
   (vertico-mode 1) ; Activate Vertico mode
   (let* ((directories '("/usr/share/PayloadsAllTheThings/"
                          "/home/yada/Documents/WorkDir/Reads/wstg/document/4-Web_Application_Security_Testing/"
-                         "/home/yada/Documents/WorkDir/Reads/CheatSheetSeries/cheatsheets/"))
+                         "/home/yada/Documents/WorkDir/Reads/CheatSheetSeries/cheatsheets/"
+                        "/home/yada/Documents/WorkDir/Reads/vulnerability-Checklist"))
          (files (mapcan (lambda (dir)
                           (directory-files-recursively dir "\\.md$"))
                         directories))
@@ -87,6 +88,7 @@
                                            (source (cond ((string-match-p "/PayloadsAllTheThings/" dir-name) "PayloadAllTheThings   ]->")
                                                         ((string-match-p "/wstg/document/4-Web_Application_Security_Testing/" dir-name) "WebSecurity           ]->")
                                                         ((string-match-p "/CheatSheetSeries/cheatsheets/" dir-name) "Cheatsheet            ]->")
+                                                        ((string-match-p "/vulnerability-Checklist/" dir-name) "Vuln-Cheat                      ]->")
                                                          (t ""))))
 
                                       (cons (format "%-30s%-30s" source base-name) file)))

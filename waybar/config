@@ -3,7 +3,7 @@
     "layer": "top",
     "modules-left": ["hyprland/workspaces","cpu","memory","temperature"],
     "modules-right": ["network","tray","backlight", "pulseaudio","battery"],
-    "modules-center": ["clock","custom/media","wlr/taskbar"],
+    "modules-center": ["clock","custom/media"],
 
 
     "hyprland/workspaces": {
