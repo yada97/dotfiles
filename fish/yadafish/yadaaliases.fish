@@ -10,6 +10,7 @@ alias o ' brightnessctl s 0'
 #alias archstrike  'docker container start Archstrike'
 #alias archstrike_stop  'podman stop Archstrike'
 
+alias ripc 'rm /home/yada/.var/app/fm.cancel.Ripcord/data/Ripcord/ripcord.lockfile'
 alias strike 'docker container start archstrike && docker container exec -it archstrike /bin/fish'
 #alias arch_stop 'docker container stop Archstrike'
 #alias archstrike.nn 'docker container start Archstrike'
